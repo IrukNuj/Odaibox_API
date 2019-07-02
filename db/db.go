@@ -4,6 +4,7 @@ import (
 	//"database/sql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/iruknuj/odaibox_API/model"
 )
 
 var (
@@ -17,8 +18,13 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
+	autoMigration()
 }
 
 func GetDB() *gorm.DB {
 	return db
+}
+
+func autoMigration() {
+	db.AutoMigrate(&model.Post{})
 }
