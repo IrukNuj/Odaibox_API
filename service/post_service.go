@@ -38,3 +38,20 @@ func (s Service) CreateModel(context *gin.Context) (Post, error) {
 
 	return posts, nil
 }
+
+func (s Service) UpdateByID(id string, context *gin.Context) (Post, error) {
+	db := db.GetDB()
+	var post Post
+
+	if err := db.Where("id = ?", id).First(&post).Error; err != nil {
+		return post, err
+	}
+
+	if err := context.BindJSON(&post); err != nil {
+		return post, err
+	}
+
+	db.Save(&post)
+
+	return post, nil
+}

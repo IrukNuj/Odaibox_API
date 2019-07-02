@@ -7,6 +7,7 @@ import (
 
 func Init() {
 	r := router()
+	r.Run()
 }
 
 func router() *gin.Engine {
@@ -17,6 +18,7 @@ func router() *gin.Engine {
 		ctrl := post.Controller{}
 		posts.GET("", ctrl.Index)
 		posts.POST("", ctrl.Create)
+		posts.PUT("/:id", ctrl.Update)
 	}
 
 	return routes

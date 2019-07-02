@@ -14,7 +14,7 @@ var (
 
 // Init is initialize db from main function
 func Init() {
-	db, err = gorm.Open("mysql", "root:@/odaibox_db")
+	db, err = gorm.Open("mysql", "root:@/odaibox_db?parseTime=true")
 	if err != nil {
 		panic(err)
 	}
