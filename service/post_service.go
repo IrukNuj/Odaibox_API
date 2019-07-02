@@ -37,5 +37,4 @@ func (s Service) CreateModel(context *gin.Context) (Post, error) {
 	}
 
 	return posts, nil
-
 }
