@@ -3,8 +3,7 @@ package post
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	post "github.com/iruknuj/odaibox_API/service"
-	"net/http"
+	"github.com/iruknuj/odaibox_API/service"
 )
 
 type Controller struct {
@@ -26,13 +25,6 @@ func (c Controller) Index(context *gin.Context) {
 // POST /posts
 func (c Controller) Create(context *gin.Context) {
 	var service post.Service
-	if context.Query("reply") != "" {
-		context.JSON(http.StatusBadRequest,
-			gin.H{
-				"body": "そういう事をしないの",
-			})
-		return
-	}
 	res, err := service.CreateModel(context)
 
 	if err != nil {
