@@ -1,6 +1,7 @@
 package db
 
 import (
+	"os"
 	//"database/sql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
@@ -14,7 +15,7 @@ var (
 
 // Init is initialize db from main function
 func Init() {
-	db, err = gorm.Open("mysql", "root:@/odaibox_db?parseTime=true")
+	db, err = gorm.Open("mysql", os.Getenv("CLEARDB_DATABASE_URL"))
 	if err != nil {
 		panic(err)
 	}
