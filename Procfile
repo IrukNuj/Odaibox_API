@@ -1,1 +1,1 @@
-web:go run main.go
+web: odaibox_API
