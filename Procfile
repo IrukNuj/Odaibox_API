@@ -1,1 +1,1 @@
-web:odaibox_APi
+web:odaibox-api
