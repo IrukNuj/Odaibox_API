@@ -1,1 +1,1 @@
-web:odaibox-api
+web: main.go
