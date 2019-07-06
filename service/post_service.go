@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/iruknuj/odaibox_API/db"
 	"github.com/iruknuj/odaibox_API/model"
+	"gopkg.in/go-playground/validator.v8"
+	"net/http"
 )
 
 type Service struct {
@@ -29,6 +31,14 @@ func (s Service) CreateModel(context *gin.Context) (Post, error) {
 	var posts Post
 
 	if err := context.BindJSON(&posts); err != nil {
+		return posts, err
+	}
+
+	config := &validator.Config{TagName: "v-post"}
+	validate := validator.New(config)
+
+	if err := validate.Struct(posts); err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"body": "そういう事しないの"})
 		return posts, err
 	}
 
